@@ -1,0 +1,3 @@
+簡易API
+
+GET POST DELETE
