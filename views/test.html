@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul class="list">
+    <li></li>
+  </ul>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script>
+    const list = document.querySelector('.list');
+    let temparr = []
+
+    function getData() {
+      axios.get('http://localhost:3000/api/test')
+        .then((res) => {
+          console.log(res.data);
+          temparr = res.data.testData;
+          renderData();
+        })
+    }
+
+    function renderData() {
+      let str = '';
+          temparr.forEach((item) => {
+            str += `<li>${item.id} ${item.content}</li>`
+          });
+          list.innerHTML = str;
+    }
+    getData();
+
+  </script>
+</body>
+
+</html>
