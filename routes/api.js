@@ -6,9 +6,15 @@ var router = express.Router();
 const testData = [
   {
     id: 001,
-    content: 'hello world'
+    content: '這是API測試頁'
   }
 ]
+
+// middleware
+let midTest = function(req, res, next) {
+  console.log('這是middleware');
+  next();
+}
 // GET---------------------------------
 router.get('/test', function(req, res, next) {
   res.send({
@@ -44,6 +50,12 @@ router.delete('/test/:id', function(req, res, next) {
     success: true,
     testData
   });
+  res.end();
+});
+
+// middleware test---------------------------
+router.get('/mdTest',midTest, function(req, res, next) {
+  res.send('hello');
   res.end();
 });
 //---------------------------------

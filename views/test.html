@@ -7,6 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+<style>
+  *{
+    list-style: none;
+  }
+</style>
 
 <body>
   <ul class="list">
@@ -18,23 +23,35 @@
     const list = document.querySelector('.list');
     let temparr = []
 
+    // getApi test-----------------------
     function getData() {
       axios.get('http://localhost:3000/api/test')
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           temparr = res.data.testData;
           renderData();
         })
     }
+    getData();
+    
+    // ---------------------------------
 
     function renderData() {
       let str = '';
           temparr.forEach((item) => {
-            str += `<li>${item.id} ${item.content}</li>`
+            str += `<li><h2>${item.content}</h2></li>`
           });
           list.innerHTML = str;
     }
-    getData();
+
+    // middleware test------------------
+    function mdTest() {
+      axios.get('http://localhost:3000/api/mdTest')
+      .then(res => console.log(res))
+    }
+
+    mdTest()
+    // ---------------------------------
 
   </script>
 </body>
